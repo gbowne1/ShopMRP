@@ -1,0 +1,1 @@
+"postCreateCommand": "psql -f init.sql $CONNECTION_STRING"
