@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemIcon, ListItemText, Divider, Switch } from '@mui/material';
 import { Menu as MenuIcon, AccountCircle as AccountCircleIcon, Home as HomeIcon, Person as PersonIcon, Build as BuildIcon, Assignment as AssignmentIcon, Schedule as ScheduleIcon, CheckCircle as CheckCircleIcon, Storage as StorageIcon, ShoppingCart as ShoppingCartIcon, Brightness4 as Brightness4Icon, Brightness7 as Brightness7Icon } from '@mui/icons-material';
+import HandymanIcon from '@mui/icons-material/Handyman';
 import { makeStyles } from '@mui/styles';
-import { Route, Switch as RouterSwitch, useHistory, useLocation, useNavigate, useParams, Navigate, Outlet, Link } from 'react-router-dom';
+import { Route, Routes, Switch as RouterSwitch, BrowserRouter, Router, useLocation, useNavigate, useParams, Navigate, Outlet, Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 
 const drawerWidth = 250;
@@ -42,7 +43,6 @@ function App() {
 	const classes = useStyles();
 	const [drawerOpen, setDrawerOpen] = useState(false);
 	const [darkMode, setDarkMode] = useState(false);
-	const history = useHistory();
 	const location = useLocation();
 	const navigate = useNavigate();
 	const params = useParams();
@@ -79,6 +79,7 @@ function App() {
 		{ label: 'Quality', icon: <CheckCircleIcon />, path: '/quality' },
 		{ label: 'Warehouse', icon: <StorageIcon />, path: '/warehouse' },
 		{ label: 'Purchasing', icon: <ShoppingCartIcon />, path: '/purchasing' },
+		{ label: 'Maintenance', icon: <HandymanIcon />, path: '/maintenance' },
 	];
 
 	return (
@@ -111,10 +112,10 @@ function App() {
 				<Divider />
 				<List>
 					{drawerItems.map((item) => (
-						<ListItem button key={item.label} selected={item.path === location.pathname} onClick={() => history.push(item.path)}>
-							<ListItemIcon>{item.icon}</ListItemIcon>
-							<ListItemText primary={item.label} />
-						</ListItem>
+						<ListItem button key={item.label} selected={item.path === location.pathname} onClick={() => navigate(item.path)}>
+						<ListItemIcon>{item.icon}</ListItemIcon>
+						<ListItemText primary={item.label} />
+					  </ListItem>
 					))}
 				</List>
 				<Divider />
@@ -122,14 +123,19 @@ function App() {
 			<main className={classes.content}>
 				<div className={classes.drawerHeader} />
 				<Switch checked={darkMode} onChange={handleThemeToggle} color="secondary" />
-				<RouterSwitch>
-					<Route exact path="/" component={HomePage} />
-					<Route path="/about" component={AboutPage} />
-					<Route path="/contact" component={ContactPage} />
-					<Route path="/products" component={ProductPage} />
-					<Route path="/product/:id" component={ProductDetailPage} />
-					<Route path="*" component={NotFoundPage} />
-				</RouterSwitch>
+				<BrowserRouter>
+      				<Routes>
+        				<Route path="/" element={<Home />} />
+        				<Route path="/sales" element={<Sales />} />
+        				<Route path="/hr" element={<HR />} />
+						<Route path="/production" element={<HR />} />
+						<Route path="/planning" element={<HR />} />
+						<Route path="/quality" element={<HR />} />
+						<Route path="/warehouse" element={<HR />} />
+						<Route path="/purchasing" element={<HR />} />
+						<Route path="/maintenance" element={<HR />} />
+      				</Routes>
+   				 </BrowserRouter>
 			</main >
 			</div>
   );

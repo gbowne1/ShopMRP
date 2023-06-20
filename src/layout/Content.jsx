@@ -15,7 +15,7 @@ import EmployeeCreate from "./components/EmployeeCreate";
 import EmployeeList from "./components/EmployeeList";
 import EmployeeDetail from "./components/EmployeeDetail";
 import theme from "../theme";
-import theme from "../theme2";
+import theme2 from "../theme2";
 
 const useStyles = makeStyles((theme) => ({
   tabs: {
