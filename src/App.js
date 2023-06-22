@@ -42,7 +42,7 @@ const useStyles = makeStyles()((theme) => {
 });
 
 function App() {
-	const classes = useStyles();
+	const {classes} = useStyles();
 	const [drawerOpen, setDrawerOpen] = useState(false);
 	const [darkMode, setDarkMode] = useState(false);
 	const location = useLocation();
