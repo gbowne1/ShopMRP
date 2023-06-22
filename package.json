@@ -27,6 +27,7 @@
 		"react-router-dom": "^6.11.2",
 		"react-scripts": "5.0.1",
 		"sweetalert2": "^11.7.8",
+		"tss-react": "^4.8.6",
 		"web-vitals": "^2.1.4",
 		"yup": "^1.1.1"
 	},
