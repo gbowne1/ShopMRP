@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemIcon, ListItemText, Divider, Switch } from '@mui/material';
 import { Menu as MenuIcon, AccountCircle as AccountCircleIcon, Home as HomeIcon, Person as PersonIcon, Build as BuildIcon, Assignment as AssignmentIcon, Schedule as ScheduleIcon, CheckCircle as CheckCircleIcon, Storage as StorageIcon, ShoppingCart as ShoppingCartIcon, Brightness4 as Brightness4Icon, Brightness7 as Brightness7Icon } from '@mui/icons-material';
 import HandymanIcon from '@mui/icons-material/Handyman';
-import { makeStyles } from '@mui/styles';
+// import { makeStyles } from '@mui/styles';
+import { makeStyles } from 'tss-react/mui';
 import { Route, Routes, Switch as RouterSwitch, BrowserRouter, Router, useLocation, useNavigate, useParams, Navigate, Outlet, Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 
 const drawerWidth = 250;
 
-const useStyles = makeStyles((theme) => ({
-	root: {
+const useStyles = makeStyles()((theme) => {
+	return {root: {
 		display: 'flex',
 	},
 	appBar: {
@@ -37,10 +38,11 @@ const useStyles = makeStyles((theme) => ({
 		flexGrow: 1,
 		padding: theme.spacing(3),
 	},
-}));
+}
+});
 
 function App() {
-	const classes = useStyles();
+	const {classes} = useStyles();
 	const [drawerOpen, setDrawerOpen] = useState(false);
 	const [darkMode, setDarkMode] = useState(false);
 	const location = useLocation();
